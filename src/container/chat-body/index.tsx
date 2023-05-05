@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatContainerLeft from "../../compoents/chat-container/chat-container-left";
 import { ChatContainerRight } from "../../compoents/chat-container/chat-container-right";
 import ChatAiContainer from "../../compoents/chat-container/chat-ai-container";
@@ -17,7 +17,13 @@ const globalMessage: MessageType[] = [];
 const ChatBody = () => {
   const socket = useSocket();
   const { id } = useParams();
+  const chatContainerRef = useRef<any>();
   const [messages, setMessages] = useState<MessageType[]>(globalMessage);
+  useEffect(() => {
+    // Update the scroll position of the chat container
+    // to the bottom when new messages are added
+    chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+  }, [messages]);
 
   console.log({ socket });
 
@@ -41,13 +47,6 @@ const ChatBody = () => {
     }
   }, [socket]);
 
-  function sendMessage(message: string) {
-    socket.emit("message", {
-      message: { body: "test", userId: sessionStorage.getItem("userId") },
-      roomId: id,
-    });
-  }
-
   const generateChat = (message: any) => {
     const userId = sessionStorage.getItem("userId");
     console.log("item", message);
@@ -56,12 +55,13 @@ const ChatBody = () => {
     } else return <ChatContainerLeft chatBody={message.message.body} />;
   };
   return (
-    <div className="h-[calc(100vh-125px)] overflow-auto hover:overflow-scroll">
+    <div
+      ref={chatContainerRef}
+      className="h-[calc(100vh-125px)] overflow-scroll "
+    >
       {messages.map((item) => {
         return generateChat(item);
       })}
-
-      <div onClick={() => sendMessage("test world")}>send message</div>
     </div>
   );
 };

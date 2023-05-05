@@ -29,7 +29,7 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-125px)] overflow-auto hover:overflow-scroll">
+    <div className="h-[calc(100vh-125px)] overflow-auto ">
       {isUser ? (
         <div onClick={handleGenerateRoom}>generate room</div>
       ) : (
