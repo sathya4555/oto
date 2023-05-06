@@ -34,7 +34,12 @@ const Onboarding = () => {
   const handleSetStepNumber = (stepNumber: number) => {
     setStepNumber(stepNumber);
   };
-
+  const handleClickCopy = () => {
+    if (localRoomId) {
+      navigator.clipboard.writeText(localRoomId);
+      setIsCopyClicked(true);
+    }
+  };
   return (
     <div className="flex-col w-screen h-screen pt-40 overflow-auto justify-evenly">
       <div className="flex w-screen align-middle h-1/3 justify-evenly">
@@ -100,7 +105,7 @@ const Onboarding = () => {
               <p className="text-2xl">{localRoomId && localRoomId}</p>
             </div>
 
-            <div className="m-1" onClick={() => setIsCopyClicked(true)}>
+            <div className="m-1" onClick={() => handleClickCopy()}>
               COPY
             </div>
           </div>
