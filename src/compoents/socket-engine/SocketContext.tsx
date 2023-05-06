@@ -12,7 +12,10 @@ export const SocketProvider: React.FC<{ children?: React.ReactNode }> = ({
   console.log("in content", socket);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3001");
+    const newSocket = io("http://localhost:3001", {
+      transports: ["websocket"],
+      withCredentials: true,
+    });
     setSocket(newSocket);
 
     return () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatContainerLeft from "../../compoents/chat-container/chat-container-left";
 import { ChatContainerRight } from "../../compoents/chat-container/chat-container-right";
-import ChatAiContainer from "../../compoents/chat-container/chat-ai-container";
+
 import { useSocket } from "../../compoents/socket-engine/SocketContext";
 import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
@@ -47,20 +47,25 @@ const ChatBody = () => {
     }
   }, [socket]);
 
-  const generateChat = (message: any) => {
+  const generateChat = (message: any, index: number) => {
     const userId = sessionStorage.getItem("userId");
     console.log("item", message);
     if (userId === message.message.userId) {
-      return <ChatContainerRight chatBody={message.message.body} />;
-    } else return <ChatContainerLeft chatBody={message.message.body} />;
+      return (
+        <ChatContainerRight chatBody={message.message.body} index={index} />
+      );
+    } else
+      return (
+        <ChatContainerLeft chatBody={message.message.body} index={index} />
+      );
   };
   return (
     <div
       ref={chatContainerRef}
       className="h-[calc(100vh-125px)] overflow-scroll "
     >
-      {messages.map((item) => {
-        return generateChat(item);
+      {messages.map((item, index) => {
+        return generateChat(item, index);
       })}
     </div>
   );

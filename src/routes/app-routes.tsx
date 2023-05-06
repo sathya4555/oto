@@ -5,12 +5,21 @@ import { SocketProvider } from "../compoents/socket-engine/SocketContext";
 import Onboarding from "../container/onboarding";
 import Header from "../compoents/header";
 import Footer from "../compoents/footer";
+import Home from "../container/home";
 
 const AppRoutes = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route
+            path={"/"}
+            element={
+              <>
+                <Home />
+              </>
+            }
+          />
           <Route
             path={"/chat/:id"}
             element={
@@ -24,9 +33,7 @@ const AppRoutes = () => {
             path={"/onboarding"}
             element={
               <>
-                <Header />
                 <Onboarding />
-                <Footer />
               </>
             }
           />
