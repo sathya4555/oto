@@ -1,7 +1,5 @@
 import { RecoilRoot } from "recoil";
 import "./App.css";
-import Footer from "./compoents/footer";
-import Header from "./compoents/header";
 import { SocketProvider } from "./compoents/socket-engine/SocketContext";
 import AppRoutes from "./routes/app-routes";
 

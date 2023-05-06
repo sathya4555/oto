@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { roomIdRecoil } from "../../atoms";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Onboarding = () => {
   const navigate = useNavigate();
-  const [roomId, setRoomId] = useRecoilState(roomIdRecoil);
   const [localRoomId, setLocalRoomId] = useState<string>();
   const [stepNumber, setStepNumber] = useState(0);
   const [isCopyClicked, setIsCopyClicked] = useState(false);

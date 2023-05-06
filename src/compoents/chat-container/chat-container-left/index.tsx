@@ -1,4 +1,3 @@
-import React from "react";
 import { ChatBodyPropType } from "../chat-container-right";
 import TextingLoader from "../../loaders/text-loaders";
 

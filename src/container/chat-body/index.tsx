@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatContainerLeft from "../../compoents/chat-container/chat-container-left";
 import { ChatContainerRight } from "../../compoents/chat-container/chat-container-right";
 
 import { useSocket } from "../../compoents/socket-engine/SocketContext";
 import { useParams } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { roomIdRecoil } from "../../atoms";
 
 export interface MessageType {
   body: string;
